@@ -1,0 +1,51 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load Dataset
+df = pd.read_csv(r"C:\Users\tejas\Downloads\archive (1)\online_vs_offline_learning_dataset.csv")
+
+# Display Dataset
+print("FIRST 5 ROWS")
+print(df.head())
+
+# Dataset Information
+print("\nDATASET INFO")
+print(df.info())
+
+# Statistical Summary
+print("\nSTATISTICAL SUMMARY")
+print(df.describe())
+
+# Missing Values
+print("\nMISSING VALUES")
+print(df.isnull().sum())
+
+# Correlation Analysis
+numeric_df = df.select_dtypes(include=['int64', 'float64'])
+
+correlation = numeric_df.corr()
+
+print("\nCORRELATION MATRIX")
+print(correlation)
+
+# Visualization Style
+sns.set(style="whitegrid")
+
+# Histograms
+numeric_df.hist(figsize=(10,8))
+plt.suptitle("Feature Distributions")
+plt.show()
+
+# Heatmap
+plt.figure(figsize=(8,6))
+sns.heatmap(correlation, annot=True, cmap='coolwarm')
+
+plt.title("Correlation Heatmap")
+plt.show()
+
+# Pairplot
+sns.pairplot(df)
+plt.show()
+
+print("\nEDA PROJECT COMPLETED SUCCESSFULLY")
